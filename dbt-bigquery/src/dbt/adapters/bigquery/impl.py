@@ -1000,6 +1000,7 @@ class BigQueryAdapter(BaseAdapter):
         """Override for DebugTask method"""
         self.execute("select 1 as id")
 
+    @available
     def validate_sql(self, sql: str) -> AdapterResponse:
         """Submit the given SQL to the engine for validation, but not execution.
 
