@@ -1036,4 +1036,6 @@ class BigQueryAdapter(BaseAdapter):
     def fetch_model_and_pool_name(self, job_id):
         dms_client = DMSClient()
         model = dms_client.fetch_model_and_pool_name(job_id)
+        print("testing: fetch_model_and_pool_name")
+        print(model)
         return model
