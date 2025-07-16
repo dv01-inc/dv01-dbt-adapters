@@ -101,7 +101,7 @@ class DMSClient:
         model_name = self._fetch_model_by_job_id(job_id, self.is_prod)
         pool_name = job_id.replace("/", "_")
 
-        return f"+{model_name} --vars '{{\"pool_name\": \"{pool_name}\", \"scala_job_id\": \"{job_id}\"}}'"
+        return f"+{model_name},pool_name={pool_name}"
 
     def _fetch_model_by_job_id(self, job_id, is_prod):
         """
