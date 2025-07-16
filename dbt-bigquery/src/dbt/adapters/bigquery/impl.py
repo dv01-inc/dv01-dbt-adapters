@@ -77,6 +77,8 @@ from dbt.adapters.bigquery.relation_configs import (
 )
 from dbt.adapters.bigquery.utility import sql_escape
 
+from dbt.adapters.bigquery.dv01_dbt_helper import DMSClient
+
 if TYPE_CHECKING:
     # Indirectly imported via agate_helper, which is lazy loaded further downfile.
     # Used by mypy for earlier type hints.
@@ -1029,3 +1031,8 @@ class BigQueryAdapter(BaseAdapter):
             catalog_integration = self.get_catalog_integration(catalog)
             return catalog_integration.build_relation(model)
         return None
+
+    @available
+    def fetch_model_and_pool_name(self, job_id):
+        dms_client = DMSClient()
+        model = dms_client.fetch_model_and_pool_name(job_id)
